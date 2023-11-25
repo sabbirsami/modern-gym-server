@@ -15,6 +15,14 @@ router.route("/").get(async (req, res) => {
         console.log(error);
     }
 });
+router.route("/:id").get(async (req, res) => {
+    try {
+        const result = await classesDetailsModal.find({ _id: id });
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 const data = { classesDetailsRouter: router };
 module.exports = data;
