@@ -9,6 +9,7 @@ const Trainer = new mongoose.model("Trainer", trainerSchema);
 router.route("/").get(async (req, res, next) => {
     console.log("Here");
     try {
+        // get all data from database
         const result = await Trainer.find({});
         res.send(result);
     } catch (error) {
@@ -19,7 +20,9 @@ router.route("/").get(async (req, res, next) => {
 // // get a trainer data
 router.route("/:id").get(async (req, res) => {
     try {
+        // get id from params
         const id = req.params.id;
+        // filter by id
         const result = await Trainer.find({ _id: id });
         res.send(result);
     } catch (error) {
@@ -40,7 +43,7 @@ router.route("/").post(async (req, res) => {
         res.status(201).json(savedData);
     } catch (error) {
         console.error("Error saving data:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Fail to save data" });
     }
 });
 
