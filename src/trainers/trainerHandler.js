@@ -29,18 +29,19 @@ router.route("/:id").get(async (req, res) => {
 
 // // add a trainer data
 router.route("/").post(async (req, res) => {
-    const newTrainer = new Trainer(req.body);
-    await newTrainer.save((err) => {
-        if (err) {
-            res.status(500).json({
-                error: "There is a server side error!",
-            });
-        } else {
-            res.status(200).json({
-                message: "Trainer data inserted successfully",
-            });
-        }
-    });
+    try {
+        // Create a new instance of the model with the data from the request body
+        const newData = new Trainer(req.body);
+
+        // Save the new document to the database
+        const savedData = await newData.save();
+
+        console.log(savedData);
+        res.status(201).json(savedData);
+    } catch (error) {
+        console.error("Error saving data:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 });
 
 // // update a trainer data
