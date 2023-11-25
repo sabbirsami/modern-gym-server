@@ -4,6 +4,7 @@ const connectDB = require("./db/connectDB");
 const globalErrorHandler = require("./utils/globalErrorHandler");
 require("dotenv").config();
 const trainerHandler = require("./trainers/trainerHandler");
+const route = require("./routes/index");
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -11,7 +12,7 @@ const port = process.env.PORT || 5000;
 applyMiddleware(app);
 
 // application routes --------------------------------------
-app.use("/trainer", trainerHandler);
+app.use("/api/", route);
 
 app.get("/", (req, res) => {
     res.send("Modern Gym Running...");

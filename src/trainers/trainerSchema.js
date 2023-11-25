@@ -13,6 +13,10 @@ const trainerSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    joiningDate: {
+        type: String,
+        required: true,
+    },
     available_time_in_day: {
         type: String,
         required: true,
