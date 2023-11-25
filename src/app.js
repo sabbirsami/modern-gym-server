@@ -1,6 +1,7 @@
 const express = require("express");
 const applyMiddleware = require("./middlewares");
 const connectDB = require("./db/connectDB");
+const globalErrorHandler = require("./utils/globalErrorHandler");
 require("dotenv").config();
 
 const app = express();
@@ -12,7 +13,7 @@ app.get("/", (req, res) => {
     res.send("Modern Gym Running...");
 });
 
-// error handling route -------------------------------
+// handling all unknown route -------------------------------
 
 app.all("*", (req, res, next) => {
     const error = new Error(
@@ -21,6 +22,8 @@ app.all("*", (req, res, next) => {
     error.status = 404;
     next(error);
 });
+
+app.use(globalErrorHandler);
 
 const main = async () => {
     await connectDB();
