@@ -3,10 +3,9 @@ const mongoose = require("mongoose");
 const weeklyClassSchema = require("./weeklyClassSchema");
 const router = express.Router();
 
-const ScheduleModel = new mongoose.model("weeklyClasses", weeklyClassSchema);
+const ScheduleModel = new mongoose.model("weeklyclasses", weeklyClassSchema);
 
 router.route("/").get(async (req, res, next) => {
-    console.log("Here");
     try {
         // get all data from database
         const result = await ScheduleModel.find({});
