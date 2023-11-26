@@ -6,6 +6,7 @@ const weeklyClassesRouter = require("../weeklyClass/weeklyClassHandler");
 const classesDetailsRouter = require("../classesDetails/classesDetailsHandler");
 const gymPackagesRouter = require("../models/gymPackages/gymPackageHandler");
 const usersBookingPackagesRouter = require("../models/packageBooking/usersBookingPackagesHandler");
+const paymentIntentRouter = require("../models/paymentIntent/paymentIntentHandler");
 
 const router = express.Router();
 const defaultRoutes = [
@@ -28,6 +29,10 @@ const defaultRoutes = [
     {
         path: "/user-booking-packages",
         route: usersBookingPackagesRouter.usersBookingPackagesRouter,
+    },
+    {
+        path: "/create-payment-intent",
+        route: paymentIntentRouter.paymentIntentRouter,
     },
     {
         path: "/users",
