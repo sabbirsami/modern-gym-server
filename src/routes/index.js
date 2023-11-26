@@ -8,6 +8,7 @@ const gymPackagesRouter = require("../models/gymPackages/gymPackageHandler");
 const usersBookingPackagesRouter = require("../models/packageBooking/usersBookingPackagesHandler");
 const paymentIntentRouter = require("../models/paymentIntent/paymentIntentHandler");
 const userInfoRouter = require("../models/userInfo/userInfoHandler");
+const galleryRouter = require("../models/gallery/galleryHandler");
 
 const router = express.Router();
 const defaultRoutes = [
@@ -34,6 +35,10 @@ const defaultRoutes = [
     {
         path: "/create-payment-intent",
         route: paymentIntentRouter.paymentIntentRouter,
+    },
+    {
+        path: "/gallery",
+        route: galleryRouter.galleryRouter,
     },
     {
         path: "/users",
