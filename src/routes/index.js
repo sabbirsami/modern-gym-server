@@ -25,6 +25,10 @@ const defaultRoutes = [
         route: gymPackagesRouter.gymPackagesRouter,
     },
     {
+        path: "/user-booking-packages",
+        route: usersBookingPackagesRouter.usersBookingPackagesRouter,
+    },
+    {
         path: "/users",
         route: trainerRouter.trainerRouter,
     },
