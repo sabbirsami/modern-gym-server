@@ -7,7 +7,7 @@ const UsersBookingPackagesModal = mongoose.model(
     "usersBookingPackage",
     usersBookingPackagesSchema
 );
-// // add a trainer data
+// // add a booking data
 router.route("/").post(async (req, res) => {
     try {
         // Create a new instance of the model with the data from the request body

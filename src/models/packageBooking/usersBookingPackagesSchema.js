@@ -17,6 +17,10 @@ const usersBookingPackagesSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    userEmail: {
+        type: String,
+        required: true,
+    },
     packageCost: {
         type: Number,
         required: true,
@@ -26,3 +30,5 @@ const usersBookingPackagesSchema = mongoose.Schema({
         required: true,
     },
 });
+
+module.exports = usersBookingPackagesSchema;

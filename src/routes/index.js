@@ -5,6 +5,7 @@ const trainerRouter = require("../trainers/trainerHandler");
 const weeklyClassesRouter = require("../weeklyClass/weeklyClassHandler");
 const classesDetailsRouter = require("../classesDetails/classesDetailsHandler");
 const gymPackagesRouter = require("../models/gymPackages/gymPackageHandler");
+const usersBookingPackagesRouter = require("../models/packageBooking/usersBookingPackagesHandler");
 
 const router = express.Router();
 const defaultRoutes = [
