@@ -9,6 +9,7 @@ const usersBookingPackagesRouter = require("../models/packageBooking/usersBookin
 const paymentIntentRouter = require("../models/paymentIntent/paymentIntentHandler");
 const userInfoRouter = require("../models/userInfo/userInfoHandler");
 const galleryRouter = require("../models/gallery/galleryHandler");
+const postRouter = require("../models/post/postHandler");
 
 const router = express.Router();
 const defaultRoutes = [
@@ -39,6 +40,10 @@ const defaultRoutes = [
     {
         path: "/gallery",
         route: galleryRouter.galleryRouter,
+    },
+    {
+        path: "/posts",
+        route: postRouter.postRouter,
     },
     {
         path: "/users",
