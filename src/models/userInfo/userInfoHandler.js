@@ -16,7 +16,21 @@ router.route("/").get(async (req, res) => {
     }
 });
 
-// // get a trainer data
+/**
+ * @api {get} / get a single data
+ * @apiDescription get a user details
+ * @apiPermission user
+ *
+ * @apiHeader {String} Authorization   User's access token
+ *
+ * @apiParam  {Number{1-}}         [page=1]     List page
+ * @apiParam  {Number{1-100}}      [limit=10]  Users per page
+ *
+ * @apiSuccess {Object[]} all the tools.
+ *
+ * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
+ * @apiError (Forbidden 403)     Forbidden     Only admins can access the data
+ **/
 router.route("/:id").get(async (req, res) => {
     try {
         // get id from params
