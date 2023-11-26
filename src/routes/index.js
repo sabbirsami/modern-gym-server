@@ -7,6 +7,7 @@ const classesDetailsRouter = require("../classesDetails/classesDetailsHandler");
 const gymPackagesRouter = require("../models/gymPackages/gymPackageHandler");
 const usersBookingPackagesRouter = require("../models/packageBooking/usersBookingPackagesHandler");
 const paymentIntentRouter = require("../models/paymentIntent/paymentIntentHandler");
+const userInfoRouter = require("../models/userInfo/userInfoHandler");
 
 const router = express.Router();
 const defaultRoutes = [
@@ -36,7 +37,7 @@ const defaultRoutes = [
     },
     {
         path: "/users",
-        route: trainerRouter.trainerRouter,
+        route: userInfoRouter.userInfoRouter,
     },
 ];
 

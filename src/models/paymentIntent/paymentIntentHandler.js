@@ -2,9 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const paymentIntentSchema = require("./paymentIntentSchema");
-const stripe = require("stripe")(
-    "sk_test_51L2vNMJH0mXagrhOnlmlSRuGcZlxlPmTDXwppJRC9qpPBLt5yfnn89Q8cbmvDv9ftU2R5ejHxMqM7stzUlZXbRfP00qrbjPmoS"
-);
+const stripe = require("stripe")(`${process.env.STRIPE_SECRET}`);
 
 const paymentIntentModal = mongoose.model("paymentIntent", paymentIntentSchema);
 
