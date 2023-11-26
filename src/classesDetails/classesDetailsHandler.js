@@ -17,7 +17,7 @@ router.route("/").get(async (req, res) => {
 });
 router.route("/:id").get(async (req, res) => {
     try {
-        const result = await classesDetailsModal.find({ _id: id });
+        const result = await classesDetailsModal.find({ _id: req.params.id });
         res.send(result);
     } catch (error) {
         console.log(error);

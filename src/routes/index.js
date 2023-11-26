@@ -4,6 +4,7 @@ require("dotenv").config();
 const trainerRouter = require("../trainers/trainerHandler");
 const weeklyClassesRouter = require("../weeklyClass/weeklyClassHandler");
 const classesDetailsRouter = require("../classesDetails/classesDetailsHandler");
+const gymPackagesRouter = require("../models/gymPackages/gymPackageHandler");
 
 const router = express.Router();
 const defaultRoutes = [
@@ -18,6 +19,10 @@ const defaultRoutes = [
     {
         path: "/classes-details",
         route: classesDetailsRouter.classesDetailsRouter,
+    },
+    {
+        path: "/gym-packages",
+        route: gymPackagesRouter.gymPackagesRouter,
     },
     {
         path: "/users",
