@@ -67,6 +67,35 @@ router.route("/:id").put(async (req, res) => {
         console.log(error);
     }
 });
+router.route("/:id").delete(async (req, res) => {
+    try {
+        const result = await Trainer.deleteOne({ _id: req.params.id });
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+    }
+});
+router.route("/application-accept/:id").put(async (req, res) => {
+    try {
+        const result = await Trainer.updateOne(
+            { email: req.params.id },
+            {
+                $set: { role: "trainer" },
+            }
+        );
+        if (result.nModified > 0) {
+            return res
+                .status(200)
+                .json({ message: "paymentStatus updated successfully" });
+        } else {
+            return res
+                .status(404)
+                .json({ error: "Post not found or likeCount unchanged" });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 const data = { trainerRouter: router };
 
