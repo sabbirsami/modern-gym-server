@@ -46,6 +46,27 @@ router.route("/").post(async (req, res) => {
         res.status(500).json({ error: "Fail to save data" });
     }
 });
+router.route("/:id").put(async (req, res) => {
+    try {
+        const result = await Trainer.updateOne(
+            { _id: req.params.id },
+            {
+                $set: { paymentStatus: "paid" },
+            }
+        );
+        if (result.nModified > 0) {
+            return res
+                .status(200)
+                .json({ message: "paymentStatus updated successfully" });
+        } else {
+            return res
+                .status(404)
+                .json({ error: "Post not found or likeCount unchanged" });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 const data = { trainerRouter: router };
 

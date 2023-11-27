@@ -17,6 +17,14 @@ const trainerSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    paymentStatus: {
+        type: String,
+        required: true,
+    },
+    role: {
+        type: String,
+        required: true,
+    },
     available_time_in_day: {
         type: String,
         required: true,

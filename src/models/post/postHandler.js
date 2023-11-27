@@ -20,8 +20,6 @@ router.route("/").get(async (req, res) => {
 router.route("/:id").put(async (req, res) => {
     try {
         const newLike = req.body.likeCount;
-        const postId = req.params.id;
-        console.log(postId);
 
         if (isNaN(newLike)) {
             return res.status(400).json({ error: "Invalid likeCount value" });
