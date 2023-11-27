@@ -47,21 +47,6 @@ router.route("/").post(async (req, res) => {
     }
 });
 
-// // update a trainer data
-// router.put("/:id", async (req, res) => {});
-// router.use((req, res, next) => {
-//     res.status(404).json({
-//         success: false,
-//         message: "Not found",
-//         errorMessages: [
-//             {
-//                 path: req.originalUrl,
-//                 message: "API not found",
-//             },
-//         ],
-//     });
-//     next();
-// });
 const data = { trainerRouter: router };
 
 module.exports = data;

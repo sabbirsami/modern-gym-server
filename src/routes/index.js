@@ -10,6 +10,7 @@ const paymentIntentRouter = require("../models/paymentIntent/paymentIntentHandle
 const userInfoRouter = require("../models/userInfo/userInfoHandler");
 const galleryRouter = require("../models/gallery/galleryHandler");
 const postRouter = require("../models/post/postHandler");
+const newsletterRouter = require("../models/newsletter/newsletterHandler");
 
 const router = express.Router();
 const defaultRoutes = [
@@ -44,6 +45,10 @@ const defaultRoutes = [
     {
         path: "/posts",
         route: postRouter.postRouter,
+    },
+    {
+        path: "/newsletters",
+        route: newsletterRouter.newsletterRouter,
     },
     {
         path: "/users",
