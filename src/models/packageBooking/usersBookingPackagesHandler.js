@@ -33,6 +33,16 @@ router.route("/").get(async (req, res) => {
         console.log(error);
     }
 });
+router.route("/:trainerEmail").get(async (req, res) => {
+    try {
+        const trainerEmail = req.params.trainerEmail;
+        console.log(trainerEmail);
+        const result = await UsersBookingPackagesModal.find({ trainerEmail });
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 const data = { usersBookingPackagesRouter: router };
 module.exports = data;

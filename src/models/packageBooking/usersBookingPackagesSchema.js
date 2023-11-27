@@ -13,6 +13,10 @@ const usersBookingPackagesSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    trainerEmail: {
+        type: String,
+        required: true,
+    },
     slotId: {
         type: String,
         required: true,

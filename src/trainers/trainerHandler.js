@@ -84,6 +84,16 @@ router.route("/application-accept/:id").put(async (req, res) => {
                 $set: { role: "trainer" },
             }
         );
+        //         const article = await Article.findById(id);
+        //   const newPayload={...article._doc}
+        //   if (!article) {
+        //     const article = await create({ ...payload, author });
+
+        //     return { article, status: 201 };
+        //   }
+
+        //   article.overwrite(newPayload);
+        //   await article.save();
         console.log(result);
         if (result.nModified > 0) {
             return res

@@ -20,6 +20,9 @@ const userInfoSchema = mongoose.Schema({
     role: {
         type: String,
     },
+    trainerId: {
+        type: String,
+    },
 });
 
 module.exports = userInfoSchema;
