@@ -21,6 +21,10 @@ const postSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    role: {
+        type: String,
+        required: true,
+    },
     postTag: {
         type: String,
         required: true,

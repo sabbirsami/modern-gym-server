@@ -46,14 +46,20 @@ router.route("/:id").get(async (req, res) => {
 // // add a trainer data
 router.route("/").post(async (req, res) => {
     try {
-        // Create a new instance of the model with the data from the request body
-        const newData = new UserInfo(req.body);
+        const email = req.body.email;
+        const user = await UserInfo.findOne({ email });
+        if (user) {
+            console.log("User found:", user);
+            res.status(200).json({ user: true });
+        } else {
+            // Create a new instance of the model with the data from the request body
+            const newData = new UserInfo(req.body);
+            // Save the new document to the database
+            const savedData = await newData.save();
 
-        // Save the new document to the database
-        const savedData = await newData.save();
-
-        console.log(savedData);
-        res.status(201).json(savedData);
+            console.log(savedData);
+            res.status(201).json(savedData);
+        }
     } catch (error) {
         console.error("Error saving data:", error);
         res.status(500).json({ error: "Fail to save data" });

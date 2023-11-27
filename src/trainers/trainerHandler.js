@@ -77,12 +77,14 @@ router.route("/:id").delete(async (req, res) => {
 });
 router.route("/application-accept/:id").put(async (req, res) => {
     try {
-        const result = await Trainer.updateOne(
-            { email: req.params.id },
+        console.log(req.params.id);
+        const result = await Trainer.findOneAndUpdate(
+            { _id: req.params.id },
             {
                 $set: { role: "trainer" },
             }
         );
+        console.log(result);
         if (result.nModified > 0) {
             return res
                 .status(200)
