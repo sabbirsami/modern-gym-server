@@ -17,6 +17,16 @@ router.route("/").get(async (req, res) => {
     }
 });
 
+router.route("/").post(async (req, res) => {
+    try {
+        const newForumData = new Post(req.body);
+        const saveForum = await newForumData.save();
+        console.log(saveForum);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 router.route("/:id").put(async (req, res) => {
     try {
         const newLike = req.body.likeCount;
