@@ -29,6 +29,17 @@ router.route("/:id").get(async (req, res) => {
         console.log(error);
     }
 });
+router.route("/find-by-email/:email").get(async (req, res) => {
+    try {
+        // get id from params
+        const email = req.params.email;
+        // filter by id
+        const result = await Trainer.find({ email });
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 // // add a trainer data
 router.route("/").post(async (req, res) => {
