@@ -53,6 +53,42 @@ router.route("/role/:email").get(async (req, res) => {
         console.log(error);
     }
 });
+router.route("/update-profile/:id").put(async (req, res) => {
+    try {
+        const result = await UserInfo.findOneAndUpdate(
+            { _id: req.params.id },
+            {
+                $set: {
+                    name: req.body.name,
+                    email: req.body.email,
+                    photoUrl: req.body.photoUrl,
+                    uid: req.body.uid,
+                    role: req.body.role,
+                    country: req.body.country,
+                    district: req.body.district,
+                    phoneNumber: req.body.phoneNumber,
+                    age: req.body.age,
+                    gender: req.body.gender,
+                    weight: req.body.weight,
+                    height: req.body.height,
+                    DateOfBirth: req.body.DateOfBirth,
+                },
+            }
+        );
+        console.log(result);
+        if (result.nModified > 0) {
+            return res
+                .status(200)
+                .json({ message: "paymentStatus updated successfully" });
+        } else {
+            return res
+                .status(404)
+                .json({ error: "Post not found or likeCount unchanged" });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 // // add a trainer data
 router.route("/").post(async (req, res) => {

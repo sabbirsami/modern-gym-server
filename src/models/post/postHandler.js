@@ -11,7 +11,8 @@ router.route("/").get(async (req, res) => {
         const skip = page * limit;
 
         const result = await Post.find().skip(skip).limit(parseInt(limit));
-        res.send(result);
+        const totalNumberOfDocument = await Post.estimatedDocumentCount();
+        res.send({ result, totalNumberOfDocument });
     } catch (error) {
         console.log(error);
     }
@@ -22,6 +23,7 @@ router.route("/").post(async (req, res) => {
         const newForumData = new Post(req.body);
         const saveForum = await newForumData.save();
         console.log(saveForum);
+        res.send(saveForum);
     } catch (error) {
         console.log(error);
     }
