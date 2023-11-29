@@ -33,6 +33,14 @@ const classesDetailsSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    trainerEmail: {
+        type: String,
+        required: true,
+    },
+    trainerId: {
+        type: String,
+        required: true,
+    },
     cost: {
         type: Number,
         required: true,

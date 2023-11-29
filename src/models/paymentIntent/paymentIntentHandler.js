@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const paymentIntentSchema = require("./paymentIntentSchema");
+const verifyToken = require("../../authentication/verifyToken");
 const stripe = require("stripe")(`${process.env.STRIPE_SECRET}`);
 
 const paymentIntentModal = mongoose.model("paymentIntent", paymentIntentSchema);
@@ -25,7 +26,7 @@ router.route("/").post(async (req, res) => {
     }
 });
 
-router.route("/").post(async (req, res) => {
+router.route("/").post(verifyToken, async (req, res) => {
     try {
         // Create a new instance of the model with the data from the request body
         const newData = new paymentIntentModal(req.body);
