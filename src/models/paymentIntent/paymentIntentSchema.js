@@ -26,7 +26,7 @@ const paymentIntentSchema = mongoose.Schema({
         required: true,
     },
     slotId: {
-        type: Number,
+        type: String,
         required: true,
     },
 });

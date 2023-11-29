@@ -9,6 +9,7 @@ const router = express.Router();
 const Token = new mongoose.model("Token", signTokenSchema);
 
 router.route("/").post(async (req, res) => {
+    console.log(process.env.TOKEN_SECRET);
     const user = req.body;
     const token = jwt.sign(user, process.env.TOKEN_SECRET, {
         expiresIn: "22h",

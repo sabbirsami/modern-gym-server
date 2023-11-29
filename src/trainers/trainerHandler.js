@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const trainerSchema = require("./trainerSchema");
-const verifyToken = require("../authentication/verifyToken");
+
 const router = express.Router();
 
 const Trainer = new mongoose.model("Trainer", trainerSchema);
@@ -10,9 +10,16 @@ const Trainer = new mongoose.model("Trainer", trainerSchema);
 router.route("/").get(async (req, res, next) => {
     console.log("Here");
     try {
+        const paymentStatus = "paid";
+
         // get all data from database
-        const result = await Trainer.find({});
-        res.send(result);
+        const trainers = await Trainer.find({});
+        const totalPaidMember = await Trainer.countDocuments({
+            paymentStatus: paymentStatus,
+        });
+        const totalMember = await Trainer.countDocuments();
+        console.log(totalMember);
+        res.send({ trainers, totalPaidMember, totalMember });
     } catch (error) {
         console.log(error);
     }
@@ -30,6 +37,7 @@ router.route("/:id").get(async (req, res) => {
         console.log(error);
     }
 });
+
 router.route("/find-by-email/:email").get(async (req, res) => {
     try {
         // get id from params
@@ -43,7 +51,7 @@ router.route("/find-by-email/:email").get(async (req, res) => {
 });
 
 // // add a trainer data
-router.route("/").post(verifyToken, async (req, res) => {
+router.route("/").post(async (req, res) => {
     try {
         // Create a new instance of the model with the data from the request body
         const newData = new Trainer(req.body);
@@ -58,7 +66,7 @@ router.route("/").post(verifyToken, async (req, res) => {
         res.status(500).json({ error: "Fail to save data" });
     }
 });
-router.route("/:id").put(verifyToken, async (req, res) => {
+router.route("/:id").put(async (req, res) => {
     try {
         const result = await Trainer.updateOne(
             { _id: req.params.id },
@@ -79,7 +87,7 @@ router.route("/:id").put(verifyToken, async (req, res) => {
         console.log(error);
     }
 });
-router.route("/:id").delete(verifyToken, async (req, res) => {
+router.route("/:id").delete(async (req, res) => {
     try {
         const result = await Trainer.deleteOne({ _id: req.params.id });
         res.send(result);
@@ -87,7 +95,7 @@ router.route("/:id").delete(verifyToken, async (req, res) => {
         console.log(error);
     }
 });
-router.route("/application-accept/:id").put(verifyToken, async (req, res) => {
+router.route("/application-accept/:id").put(async (req, res) => {
     try {
         console.log(req.params.id);
         const result = await Trainer.findOneAndUpdate(

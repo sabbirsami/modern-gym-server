@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const postSchema = require("./postSchema");
-const verifyToken = require("../../authentication/verifyToken");
 const router = express.Router();
 
 const Post = new mongoose.model("post", postSchema);
@@ -19,7 +18,7 @@ router.route("/").get(async (req, res) => {
     }
 });
 
-router.route("/").post(verifyToken, async (req, res) => {
+router.route("/").post(async (req, res) => {
     try {
         const newForumData = new Post(req.body);
         const saveForum = await newForumData.save();
@@ -30,7 +29,7 @@ router.route("/").post(verifyToken, async (req, res) => {
     }
 });
 
-router.route("/:id").put(verifyToken, async (req, res) => {
+router.route("/:id").put(async (req, res) => {
     try {
         const newLike = req.body.likeCount;
 

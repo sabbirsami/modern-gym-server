@@ -6,12 +6,14 @@ const router = express.Router();
 
 const Newsletter = new mongoose.model("newsletter", newsletterSchema);
 
-router.route("/").get(verifyToken, async (req, res) => {
+router.route("/").get(async (req, res) => {
     try {
         // get all data from database
-        const result = await Newsletter.find({});
+        const newsLetterSubscriber = await Newsletter.find({});
+        const totalNewsLetterSubscriber =
+            await Newsletter.estimatedDocumentCount();
 
-        res.send(result);
+        res.send({ newsLetterSubscriber, totalNewsLetterSubscriber });
     } catch (error) {
         console.log(error);
     }

@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const usersBookingPackagesSchema = require("./usersBookingPackagesSchema");
-const verifyToken = require("../../authentication/verifyToken");
 const router = express.Router();
 
 const UsersBookingPackagesModal = mongoose.model(
@@ -9,7 +8,7 @@ const UsersBookingPackagesModal = mongoose.model(
     usersBookingPackagesSchema
 );
 // // add a booking data
-router.route("/").post(verifyToken, async (req, res) => {
+router.route("/").post(async (req, res) => {
     try {
         // Create a new instance of the model with the data from the request body
         const newData = new UsersBookingPackagesModal(req.body);

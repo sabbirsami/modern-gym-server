@@ -4,6 +4,7 @@ const connectDB = require("./db/connectDB");
 const globalErrorHandler = require("./utils/globalErrorHandler");
 require("dotenv").config();
 const route = require("./routes/index");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = process.env.PORT || 5000;
