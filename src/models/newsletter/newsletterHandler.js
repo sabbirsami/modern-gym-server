@@ -1,11 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const newsletterSchema = require("./newsletterSchema");
+const verifyToken = require("../../authentication/verifyToken");
 const router = express.Router();
 
 const Newsletter = new mongoose.model("newsletter", newsletterSchema);
 
-router.route("/").get(async (req, res) => {
+router.route("/").get(verifyToken, async (req, res) => {
     try {
         // get all data from database
         const result = await Newsletter.find({});

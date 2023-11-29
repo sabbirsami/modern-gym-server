@@ -11,6 +11,7 @@ const userInfoRouter = require("../models/userInfo/userInfoHandler");
 const galleryRouter = require("../models/gallery/galleryHandler");
 const postRouter = require("../models/post/postHandler");
 const newsletterRouter = require("../models/newsletter/newsletterHandler");
+const signTokenRouter = require("../models/signToken/signTokenHandler");
 
 const router = express.Router();
 const defaultRoutes = [
@@ -53,6 +54,10 @@ const defaultRoutes = [
     {
         path: "/users",
         route: userInfoRouter.userInfoRouter,
+    },
+    {
+        path: "/sign-token",
+        route: signTokenRouter.signTokenRouter,
     },
 ];
 

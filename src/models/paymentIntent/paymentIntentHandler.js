@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
+require("dotenv").config();
 const paymentIntentSchema = require("./paymentIntentSchema");
 const verifyToken = require("../../authentication/verifyToken");
 const stripe = require("stripe")(`${process.env.STRIPE_SECRET}`);
@@ -8,7 +9,7 @@ const stripe = require("stripe")(`${process.env.STRIPE_SECRET}`);
 const paymentIntentModal = mongoose.model("paymentIntent", paymentIntentSchema);
 
 // // add a payment data
-router.route("/").post(async (req, res) => {
+router.route("/").post(verifyToken, async (req, res) => {
     try {
         const { packageCost } = req.body;
         const amount = parseInt(packageCost * 100);
@@ -42,7 +43,7 @@ router.route("/").post(verifyToken, async (req, res) => {
     }
 });
 
-router.route("/").get(async (req, res) => {
+router.route("/").get(verifyToken, async (req, res) => {
     try {
         // find all booking
         const result = await paymentIntentModal.find({});

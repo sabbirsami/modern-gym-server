@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userInfoSchema = require("./userInfoSchema");
+const verifyToken = require("../../authentication/verifyToken");
 const router = express.Router();
 
 const UserInfo = new mongoose.model("user", userInfoSchema);
@@ -42,7 +43,7 @@ router.route("/:id").get(async (req, res) => {
         console.log(error);
     }
 });
-router.route("/role/:email").get(async (req, res) => {
+router.route("/role/:email").get(verifyToken, async (req, res) => {
     try {
         // get id from params
         const email = req.params.email;
@@ -53,7 +54,7 @@ router.route("/role/:email").get(async (req, res) => {
         console.log(error);
     }
 });
-router.route("/update-profile/:id").put(async (req, res) => {
+router.route("/update-profile/:id").put(verifyToken, async (req, res) => {
     try {
         const result = await UserInfo.findOneAndUpdate(
             { _id: req.params.id },
